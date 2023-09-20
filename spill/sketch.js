@@ -242,12 +242,13 @@ function enemy3(){
 }
 
 function draw() {
-  background(0,0,105);
+  background(65, 49, 22); 
   if (player_kill == false){
     player()
   }else{
     textSize(32);
-    text('du er dau.', 10, 30);
+    fill(133, 100, 47)
+    text('du er dau.', 180, 250);
   }
   if (enemy1_kill == false){
     enemy1()
@@ -260,7 +261,9 @@ function draw() {
   }
   if (enemy3_kill == true && enemy2_kill == true && enemy1_kill == true && player_kill == false){
     textSize(32);
-    text('du er flink.', 10, 30);
+    fill(133, 100, 47)
+    text('du er flink.', 180, 250);
+    
   }
   ball();
   
