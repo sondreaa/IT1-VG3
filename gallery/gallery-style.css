@@ -1,0 +1,101 @@
+img{
+    max-height: 100%;
+    max-width: 100%;
+}
+#tittel{
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    color: yellow;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+#galtittel{
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+#galbody{
+    background-color: yellow;
+}
+#knapp{
+    width: 250px;
+    height: 50px;
+    opacity: 35%;
+    border: 2px solid black;
+    background-color: yellow;
+    padding: 10px;
+    transform: translateX(-50%);
+    margin-left: 50%;
+    transition: all .3s;
+}
+#knapp:hover {
+    opacity: 100%;
+}
+#knapp2{
+    width: 200px;
+    height: 40px;
+    border: 2px solid black;
+    background-color: yellow;
+    opacity: 20%;
+    transition: all .3s;
+}
+#knapp2:hover{
+    opacity: 100%;
+}
+#container{
+    position: absolute;
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+
+
+
+@media only screen and (min-width: 1080px){
+    #galleri{
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-gap: 20px;
+        height: 100vh;
+        width: 100vw;
+    }
+    #pc{
+        width: 100%;
+        position: absolute;
+        z-index: -1;
+    }
+    #mobil{
+        width: 100%;
+        position: absolute;
+        z-index: -2;
+    }
+
+}
+
+@media only screen and (max-width: 1080px) {
+    #galleri{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 10px;
+        height: 100vh;
+        width: 100vw;
+    }
+    #pc{
+        width: 100%;
+        position: absolute;
+        z-index: -2;
+    }
+    #mobil{
+        width: 100%;
+        position: absolute;
+        z-index: -1;
+    }
+  }
+
+
+
