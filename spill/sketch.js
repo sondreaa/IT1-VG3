@@ -265,6 +265,7 @@ function draw() {
     text('du er flink.', 180, 250);
     
   }
+  fill(255, 255, 255)
   ball();
   
  
