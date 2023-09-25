@@ -64,7 +64,7 @@ function ball_rect_collision() {
   rot_ball_y = -(ballx - playerx)*sin(player_rotation) + (bally - playery)*cos(player_rotation)
   distancex = abs(rot_ball_x);
   distancey = abs(rot_ball_y);
-
+  
   if (distancex > (50/2 + 5)) { return false; }
   if (distancey > (10/2 + 5)) { return false; }
 

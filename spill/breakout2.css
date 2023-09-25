@@ -24,12 +24,25 @@ header {
   margin: 0;
   padding: 0;
 } */
-main {
-  display: flex;
-  justify-content: center;
 
+main {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 canvas {
   display: flex;
 
+}
+.TVdiv{
+  position: relative;
+  height: 700px;
+}
+.TVimg{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 630px;
 }
