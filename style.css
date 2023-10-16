@@ -19,3 +19,19 @@ header {
 .container{
     margin: 10px;
 }
+/* .pointer{
+    position: relative;
+    display: flex;
+    justify-content: center;
+} */
+
+canvas{
+    position: relative;
+    left: 50%;
+    top: 100%;
+
+
+
+    transform: translate(-50%, 0);
+
+}
