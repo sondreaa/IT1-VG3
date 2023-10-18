@@ -10,34 +10,59 @@ let smoothSpeed = 0.1;
 let scl = 25.0;
 const count = 3;
 let iToTheta;
-let canvasSize = 300
+let canvasSize_x = 350
+let canvasSize_y = 450
 
 function setup() {
-	createCanvas(canvasSize, canvasSize);
-	x = width * 0.5;
-	y = height * 0.5;
+	createCanvas(canvasSize_x, canvasSize_y);
+	x = 153
+	y = 152
 	iToTheta = TWO_PI / count;
-	img = loadImage('../img/pointing.png')
-	img2 = loadImage('../img/favicon.png')
+
+	pointLeft = loadImage('../img/pointing1.png')
+	profileLeft = loadImage('../img/profile1.png')
+	pointRight = loadImage('../img/pointing2.png')
+	profileRight = loadImage('../img/profile2.png')
+
 }
 
 function draw() {
 	targetAngle = atan2(mouseY - y, mouseX - x);
 	currentAngle = lerpAngle(currentAngle, targetAngle, smoothSpeed);
+	if (currentAngle > TWO_PI){
+		currentAngle -= TWO_PI
+	}
+	if (currentAngle < -TWO_PI){
+		currentAngle += TWO_PI
+	}
 	
 	background(200);
 	background(133, 100, 47);
 
-	translate(height / 2, width / 2)
-	// image(img2, 0, 0, height, width)
+	if (-PI/2 < currentAngle && currentAngle < PI/2){
+		profileIMG = profileRight
+		pointIMG = pointRight
+	} else if ((3/2)*PI < currentAngle && currentAngle < TWO_PI){
+		profileIMG = profileRight
+		pointIMG = pointRight
+	} else{
+		profileIMG = profileLeft
+		pointIMG = pointLeft
+	}
 
-	rotate(currentAngle);	
+	image(profileIMG, width/2, 253, 400, 400)
+
+	translate(x,y)
+	rotate(currentAngle);
+
    	imageMode(CENTER);	
-	image(img, 0,0, height, width)
-	rotate(-currentAngle)
+	image(pointIMG, 0,0, 400, 400)
 
-	// if (currentAngle * 360 / TWO_PI )
-	// scale(1, -1);
+
+	rotate(-currentAngle)
+	translate(-x,-y)
+
+
 	
 	noStroke();
 	// beginShape();
@@ -56,7 +81,7 @@ function draw() {
 	// line(x, y, x + cos(currentAngle) * scl,	y + sin(currentAngle) * scl);
 	// line(0, 0, 0 + cos(currentAngle) * scl,	0 + sin(currentAngle) * scl);
 
-	console.log(currentAngle * 360 / TWO_PI) //bruk denne til å flippe bildene horisontalt
+	// console.log(currentAngle * 360 / TWO_PI) //logger vinkelen i grader
 }
 
 // Linear interpolation of an angle.
