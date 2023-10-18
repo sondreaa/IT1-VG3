@@ -26,7 +26,7 @@ function draw() {
 	currentAngle = lerpAngle(currentAngle, targetAngle, smoothSpeed);
 	
 	background(200);
-	// background(133, 100, 47);
+	background(133, 100, 47);
 
 	translate(height / 2, width / 2)
 	// image(img2, 0, 0, height, width)
