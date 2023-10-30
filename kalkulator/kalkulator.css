@@ -19,3 +19,9 @@ header {
 .container{
     margin: 10px;
 }
+.kalkulator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
