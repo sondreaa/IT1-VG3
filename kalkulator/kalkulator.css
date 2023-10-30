@@ -1,0 +1,21 @@
+body {
+    margin: 0%;
+    background-color:#85642F;
+    color: #413116;
+    font-family:Arial, Helvetica, sans-serif;
+}
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #413116;
+    color: #85642F;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.face {
+    max-width: 10%;
+    max-height: 10%;
+}
+.container{
+    margin: 10px;
+}
