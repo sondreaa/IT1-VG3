@@ -1,7 +1,5 @@
-
 print("SKRIV INN REGNESTYKKET DITT:")
 regnestykke = input(">").replace(",", ".")
-
 
 if "+" in regnestykke:
     ledd = regnestykke.split("+")
@@ -17,8 +15,12 @@ elif "*" in regnestykke:
 
 elif "/" in regnestykke:
     ledd = regnestykke.split("/")
-    result = float(ledd[0]) / float(ledd[1])
+    if float(ledd[1]) != 0:
+        result = float(ledd[0]) / float(ledd[1])
+    else:
+        result = 'Kan ikke dele på 0!'
+        
+else:
+    result = 'error'
 
 print("RESULTAT:", result)
-
-

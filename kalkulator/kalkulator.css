@@ -23,5 +23,11 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+}
+input {
+    font-size: 75px;
+    width: 600px;
+}
+button {
+    font-size: 75px;
 }
