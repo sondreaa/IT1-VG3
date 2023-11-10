@@ -10,7 +10,7 @@ let d_height = (3/4) * d_width
 
 let tile = 36
 
-let colorList = ['red', 'green', 'yellow', 'purple', 'blue']
+let colorList = ['red', 'green', 'yellow', 'purple', 'blue', 'white']
 
 
 
@@ -47,7 +47,6 @@ class Block extends Parent {
 
     this.x = a
 
-    
   }
 }
 
@@ -97,7 +96,7 @@ let block2 = new Block(4, 6, 3)
 
 for (let x = 0; x < 6; x++) {
   for (let y = 0; y < 12; y++) {
-    board[x].push(new Block(x, y, Math.floor(Math.random()*5)))
+    board[x].push(new Block(x, y, x))//Math.floor(Math.random()*5)))
   }
 }
 console.log(board)
@@ -143,8 +142,22 @@ function keyPressed() {
     player.movePlayer(1, 0)
   }
   if (keyCode === SPACEBAR || keyCode === KEY_K) {
-    console.log('Swap!')
+    // console.log('Swap!')
     // block.swapBlock(block2)
+
+    
+    board[player.x/tile][player.y/tile].swapBlock(board[player.x/tile+1][player.y/tile])
+    // Finn referansene til de to elementene
+    let førsteElement = board[player.x/tile][player.y/tile]
+    let andreElement = board[player.x/tile+1][player.y/tile]
+
+    // Lag en midlertidig variabel
+    let temp = førsteElement;
+
+    // Bytt plass på elementene
+    board[player.x/tile][player.y/tile] = andreElement;
+    board[player.x/tile+1][player.y/tile] = temp;
+
   }
 
 }
