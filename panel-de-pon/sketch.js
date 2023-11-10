@@ -81,26 +81,40 @@ class Player extends Parent {
 }
 
 let board = [
-  [0,0,0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0,0,0],
+  [],
+  [],
+  [],
+  [],
+  [],
+  [],
 ]
+
+
 
 let player = new Player(2, 5)
 let block = new Block(3, 6, 2)
 let block2 = new Block(4, 6, 3)
 
+for (let x = 0; x < 6; x++) {
+  for (let y = 0; y < 12; y++) {
+    board[x].push(new Block(x, y, Math.floor(Math.random()*5)))
+  }
+}
+console.log(board)
 function draw() {
   translate(300-tile*3,10)
 
   // background(0,100,0)
   // clear()
   background(180)
-  block.drawBlock()
-  block2.drawBlock()
+  // block.drawBlock()
+  // block2.drawBlock()
+
+  for (let x = 0; x < 6; x++) {
+    for (let y = 0; y < 12; y++) {
+      board[x][y].drawBlock()
+    }
+  }
   
   for (var x = 0; x < tile*6+1; x += tile) {
 		for (var y = 0; y < tile*12+1; y += tile) {
@@ -110,6 +124,7 @@ function draw() {
 			line(0, y, tile*6, y)
 		}
 	}
+
   player.drawPlayer()
 
 }
@@ -129,7 +144,7 @@ function keyPressed() {
   }
   if (keyCode === SPACEBAR || keyCode === KEY_K) {
     console.log('Swap!')
-    block.swapBlock(block2)
+    // block.swapBlock(block2)
   }
 
 }
