@@ -10,7 +10,7 @@ let d_height = (3/4) * d_width
 
 let tile = 36
 
-let colorList = ['red', 'green', 'yellow', 'purple', 'blue', 'white']
+let colorList = ['red', 'green', 'yellow', 'purple', 'blue', 'gray']
 
 
 
@@ -23,6 +23,20 @@ class Parent {
   constructor(x, y) {
     this.x = x*tile
     this.y = y*tile
+  }
+  move(x, y) {
+    this.x += x*tile
+    this.y += y*tile
+    if (this.x < 0) {
+      this.x = 0
+    } else if (this.x > tile*4) {
+      this.x = tile*4
+    }
+    if (this.y < 0){
+      this.y = 0
+    } else if (this.y > tile*11) {
+      this.y = tile*11
+    }
   }
   
 }
@@ -47,6 +61,12 @@ class Block extends Parent {
 
     this.x = a
 
+    let b = block.y
+    
+    block.y = this.y
+
+    this.y = b
+
   }
 }
 
@@ -62,20 +82,6 @@ class Player extends Parent {
     rect(this.x, this.y, tile)
     rect(this.x+tile, this.y, tile)
   }
-  movePlayer(x, y) {
-    this.x += x*tile
-    this.y += y*tile
-    if (this.x < 0) {
-      this.x = 0
-    } else if (this.x > tile*4) {
-      this.x = tile*4
-    }
-    if (this.y < 0){
-      this.y = 0
-    } else if (this.y > tile*11) {
-      this.y = tile*11
-    }
-  }
 
 }
 
@@ -87,8 +93,34 @@ let board = [
   [],
   [],
 ]
+function boardSwitchPlaces(x, y) {
+  board[x][y].swapBlock(board[x+1][y])
 
+  // Finn referansene til de to elementene
+  let førsteElement = board[x][y]
+  let andreElement = board[x+1][y]
 
+  // Lag en midlertidig variabel
+  let temp = førsteElement;
+
+  // Bytt plass på elementene
+  board[x][y] = andreElement;
+  board[x+1][y] = temp;
+}
+function boardBlockFall(x, y) {
+  board[x][y].swapBlock(board[x][y+1])
+
+  // Finn referansene til de to elementene
+  let førsteElement = board[x][y]
+  let andreElement = board[x][y+1]
+
+  // Lag en midlertidig variabel
+  let temp = førsteElement;
+
+  // Bytt plass på elementene
+  board[x][y] = andreElement;
+  board[x][y+1] = temp;
+}
 
 let player = new Player(2, 5)
 let block = new Block(3, 6, 2)
@@ -97,10 +129,10 @@ let block2 = new Block(4, 6, 3)
 // generate board
 for (let x = 0; x < 6; x++) {
   for (let y = 0; y < 12; y++) {
-    board[x].push(new Block(x, y, x))//Math.floor(Math.random()*5)))
+    board[x].push(new Block(x, y, Math.floor(Math.random()*6)))
   }
 }
-console.log(board)
+// console.log(board)
 
 
 function draw() {
@@ -114,7 +146,12 @@ function draw() {
 
   for (let x = 0; x < 6; x++) {
     for (let y = 0; y < 12; y++) {
+
       board[x][y].drawBlock()
+
+      if (y < 11 && board[x][y].colorIndex != 5 && board[x][y+1].colorIndex == 5) {
+        boardBlockFall(x, y)
+      }
     }
   }
   
@@ -133,34 +170,28 @@ function draw() {
 
 function keyPressed() {
   if (keyCode === UP_ARROW || keyCode === KEY_W) {
-    player.movePlayer(0, -1)
+    player.move(0, -1)
   }
   if (keyCode === DOWN_ARROW || keyCode === KEY_S) {
-    player.movePlayer(0, 1)
+    player.move(0, 1)
   }
   if (keyCode === LEFT_ARROW || keyCode === KEY_A) {
-    player.movePlayer(-1, 0)
+    player.move(-1, 0)
   }
   if (keyCode === RIGHT_ARROW || keyCode === KEY_D) {
-    player.movePlayer(1, 0)
+    player.move(1, 0)
   }
   if (keyCode === SPACEBAR || keyCode === KEY_K) {
     // console.log('Swap!')
     // block.swapBlock(block2)
 
     
-    board[player.x/tile][player.y/tile].swapBlock(board[player.x/tile+1][player.y/tile])
-    // Finn referansene til de to elementene
-    let førsteElement = board[player.x/tile][player.y/tile]
-    let andreElement = board[player.x/tile+1][player.y/tile]
+    // board[player.x/tile][player.y/tile].swapBlock(board[player.x/tile+1][player.y/tile])
+    
+  
 
-    // Lag en midlertidig variabel
-    let temp = førsteElement;
-
-    // Bytt plass på elementene
-    board[player.x/tile][player.y/tile] = andreElement;
-    board[player.x/tile+1][player.y/tile] = temp;
-
+    boardSwitchPlaces(player.x/tile, player.y/tile)
+    // boardBlockFall()
   }
 
 }
