@@ -211,7 +211,7 @@ function draw() {
       document.getElementById("gameround").innerHTML = "Runde: "+String(level)
       loadZombies(level)
     } else{
-      document.getElementById("gameround").innerHTML = "Du vant! Gratulerer!  Du fikk "+String(level)+" poeng."
+      document.getElementById("gameround").innerHTML = "Du vant! Gratulerer!  Du fant "+String(level)+" vaksiner."
       document.getElementById("continue").style = "display:block;"
       
       if (localStorage.getItem("poengIT1Afagdag") !== null) {
@@ -224,7 +224,7 @@ function draw() {
     for (let i = 0; i< zombieList.length; i++){
       zombieList[i].hp = 999
     }
-    document.getElementById("gameround").innerHTML = "Zombiene tok deg! Du fikk "+String(level-1)+" poeng."
+    document.getElementById("gameround").innerHTML = "Zombiene tok deg! Du fant "+String(level-1)+" vaksiner."
     document.getElementById("continue").style = "display:block;"
 
     if (localStorage.getItem("poengIT1Afagdag") !== null) {

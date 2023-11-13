@@ -94,12 +94,15 @@ let player = new Player(2, 5)
 let block = new Block(3, 6, 2)
 let block2 = new Block(4, 6, 3)
 
+// generate board
 for (let x = 0; x < 6; x++) {
   for (let y = 0; y < 12; y++) {
     board[x].push(new Block(x, y, x))//Math.floor(Math.random()*5)))
   }
 }
 console.log(board)
+
+
 function draw() {
   translate(300-tile*3,10)
 
