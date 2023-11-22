@@ -121,6 +121,18 @@ function boardBlockFall(x, y) {
   board[x][y] = andreElement;
   board[x][y+1] = temp;
 }
+function checkMatch() {
+  for (let x = 1; x < 5; x++) {
+  for (let y = 0; y < 12; y++) {
+      if (board[x-1][y].colorIndex != 5 &&board[x-1][y].color == board[x][y].color && board[x+1][y].color == board[x][y].color){
+        console.log("match!")
+        
+      }
+
+    }
+  }
+}
+
 
 let player = new Player(2, 5)
 let block = new Block(3, 6, 2)
@@ -165,6 +177,7 @@ function draw() {
 	}
 
   player.drawPlayer()
+  checkMatch()
 
 }
 
