@@ -85,6 +85,11 @@ class Player extends Parent {
 
 }
 
+// 1: gjennomføre på et mye mindre brett først
+// 2: bruke noe av samme logikk til å lage et "sliding puzzle"
+//    flere vanskelighetsgrader, har alle riktig farge, tall i rekkefølge?
+//    
+
 let board = [
   [],
   [],
