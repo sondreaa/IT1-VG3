@@ -6,15 +6,8 @@ function regnUt(){
     let result
 
     //.split()-funksjonen deler leddene i en array med to items. så legger den samme med den aktuelle regneoperasjonen
-    if (input.includes('+')){
-        ledd = input.split('+')
-        result = Number(ledd[0]) + Number(ledd[1])    
-
-    } else if (input.includes('-')){
-        ledd = input.split('-')
-        result = Number(ledd[0]) - Number(ledd[1])     
-
-    } else if (input.includes('*')){
+    
+    if (input.includes('*')){
         ledd = input.split('*')
         result = Number(ledd[0]) * Number(ledd[1])
 
@@ -26,11 +19,19 @@ function regnUt(){
             result = Number(ledd[0]) / Number(ledd[1])   
         } else{
             result = 'grr nulldivisjon >:('
-        }  
+        }
+    } else if (input.includes('+')){
+        ledd = input.split('+')
+        result = Number(ledd[0]) + Number(ledd[1])        
+
+    } else if (input.includes('-')){
+        ledd = input.split('-')
+        result = Number(ledd[0]) - Number(ledd[1])
+
     } else {
         result = ('NaN')
     }
-
+    console.log(ledd)
     console.log(input, result)
 
     //setter resultatet rett tilbake inn i input-feltet

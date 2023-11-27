@@ -11,6 +11,8 @@ header {
   background-color: #413116;
   color: #85642F;
   font-family:Arial, Helvetica, sans-serif;
+  border-bottom: solid black;
+
 }
 .face {
   max-width: 10%;
