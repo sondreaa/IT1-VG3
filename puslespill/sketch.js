@@ -20,6 +20,7 @@ let colorList = [
   'orange'
 ]
 
+// https://p5js.org/examples/image-load-and-display-image.html
 function setup() {
   createCanvas(boardSize, boardSize);
   let assetsList = []
