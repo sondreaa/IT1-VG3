@@ -20,14 +20,32 @@ let colorList = [
   'orange'
 ]
 
-let board = [
-  [],
-  [],
-  [],
-]
-
 function setup() {
   createCanvas(boardSize, boardSize);
+  let assetsList = []
+  for (let i = 1; i <= 8; i++) {
+    // console.log(i)
+    assetsList.push(loadImage('./assets/'+String(i)+'.png'))
+  }
+  console.log(assetsList)
+}
+
+class Piece{
+  constructor(x, y, id, color) {
+    this.x = x*tile
+    this.y = y*tile 
+    this.id = id 
+    this.color = color 
+  }
+
+  drawPiece() {
+    if (this.id > 0) {
+      stroke(0)
+      strokeWeight(1)
+      fill(this.color)
+      rect(this.x, this.y, tile)
+    }
+  }
 }
 
 class Player{  
@@ -90,10 +108,19 @@ class Player{
 }
 
 let player = new Player(0,0)
+let piece = new Piece(1, 1, 1, 'red')
+
+let board = [
+  [],
+  [],
+  [],
+]
 
 function draw() {
   background(133, 100, 47);
+  piece.drawPiece()
   player.drawPlayer()
+
 }
 
 function keyPressed() {
