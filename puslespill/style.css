@@ -26,4 +26,5 @@ header {
 
 canvas {
   display: block;
+  border: solid #413116 2px;
 }
