@@ -12,8 +12,6 @@ let tile = boardSize / 3
 let assetsList = []
 const puzzleFolder = "face-pieces/"
 
-// https://p5js.org/examples/image-load-and-display-image.html
-
 function setup() {
   createCanvas(boardSize, boardSize)
   for (let i = 1; i <= 9; i++) {
