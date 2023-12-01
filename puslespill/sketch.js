@@ -9,43 +9,47 @@ let boardSize = 300
 
 let tile = boardSize / 3
 
-let colorList = [
-  'red', 
-  'green', 
-  'yellow', 
-  'purple', 
-  'blue', 
-  'gray',
-  'brown',
-  'orange'
-]
+let assetsList = []
+const puzzleFolder = "face-pieces/"
 
 // https://p5js.org/examples/image-load-and-display-image.html
+
 function setup() {
-  createCanvas(boardSize, boardSize);
-  let assetsList = []
-  for (let i = 1; i <= 8; i++) {
+  createCanvas(boardSize, boardSize)
+  for (let i = 1; i <= 9; i++) {
     // console.log(i)
-    assetsList.push(loadImage('./assets/'+String(i)+'.png'))
+    assetsList.push(loadImage('./assets/'+puzzleFolder+String(i)+'.png'))
   }
-  console.log(assetsList)
+  // console.log(assetsList)
 }
 
 class Piece{
-  constructor(x, y, id, color) {
+  constructor(x, y, id) {
     this.x = x*tile
     this.y = y*tile 
     this.id = id 
-    this.color = color 
+    this.img = assetsList[id]
   }
 
-  drawPiece() {
-    if (this.id > 0) {
-      stroke(0)
-      strokeWeight(1)
-      fill(this.color)
-      rect(this.x, this.y, tile)
+  drawPiece() {    
+    this.img = assetsList[this.id]
+    if (this.img){
+      image(this.img, this.x, this.y, tile, tile)
     }
+  }
+  swapPiece(piece) {
+    let a = piece.x
+    
+    piece.x = this.x
+
+    this.x = a
+
+    let b = piece.y
+    
+    piece.y = this.y
+
+    this.y = b
+
   }
 }
 
@@ -109,7 +113,6 @@ class Player{
 }
 
 let player = new Player(0,0)
-let piece = new Piece(1, 1, 1, 'red')
 
 let board = [
   [],
@@ -117,9 +120,62 @@ let board = [
   [],
 ]
 
+const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+const id_array = numbers.sort((a, b) => 0.5 - Math.random());
+let counter = 0
+for (let y = 0; y<3; y++) {
+  for (let x = 0; x<3; x++) {
+
+    board[x][y] = new Piece(x, y, id_array[counter])
+    counter += 1
+  }
+}
+// console.log(board)
+
+
+function boardSwitchPlaces(x, y, vertical) {
+  if (vertical) {
+    board[x][y].swapPiece(board[x][y+1])
+
+    // Finn referansene til de to elementene
+    let førsteElement = board[x][y]
+    let andreElement = board[x][y+1]
+
+    // Lag en midlertidig variabel
+    let temp = førsteElement;
+
+    // Bytt plass på elementene
+    board[x][y] = andreElement;
+    board[x][y+1] = temp;
+  } else {
+    board[x][y].swapPiece(board[x+1][y])
+
+    // Finn referansene til de to elementene
+    let førsteElement = board[x][y]
+    let andreElement = board[x+1][y]
+
+    // Lag en midlertidig variabel
+    let temp = førsteElement;
+
+    // Bytt plass på elementene
+    board[x][y] = andreElement;
+    board[x+1][y] = temp;
+
+  }
+  
+  // console.log(board)
+}
+
 function draw() {
   background(133, 100, 47);
-  piece.drawPiece()
+
+
+  for (let y = 0; y<3; y++) {
+    for (let x = 0; x<3; x++) {
+      board[x][y].drawPiece()
+    }
+  }
+
   player.drawPlayer()
 
 }
@@ -138,7 +194,7 @@ function keyPressed() {
     player.movePlayer(1, 0)
   }
   if (keyCode === KEY_L) {
-    console.log("swap!")
+    boardSwitchPlaces(player.x/tile, player.y/tile, player.vertical)
   }
   if (keyCode === KEY_K) {
     player.rotatePlayer()
