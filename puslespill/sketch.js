@@ -130,6 +130,20 @@ for (let y = 0; y<3; y++) {
 }
 // console.log(board)
 
+function isCorrectOrder(board){
+  let expectedId = 0
+  for (let y = 0; y<3; y++) {
+    for (let x = 0; x<3; x++) {
+  
+      if (board[x][y].id !== expectedId){
+        return false
+      }
+      expectedId += 1
+    }
+  }
+  console.log("Done!")
+  return true
+}
 
 function boardSwitchPlaces(x, y, vertical) {
   if (vertical) {
@@ -196,6 +210,10 @@ function keyPressed() {
   }
   if (keyCode === KEY_K) {
     player.rotatePlayer()
+  }
+
+  if (isCorrectOrder(board)){
+    document.getElementById("win-text").style.visibility = "visible"
   }
 
 }
