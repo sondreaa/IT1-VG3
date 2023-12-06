@@ -1,5 +1,10 @@
 let navn = localStorage.getItem("navnIT1Afagdag")
 let poeng = localStorage.getItem("poengIT1Afagdag")
+// console.log(poeng)
+// console.log(document.getElementById("poeng"))
 
-document.getElementById("navn").innerHTML = navn
+if (navn) {
+    document.getElementById("navn").innerHTML = navn
+}
+
 document.getElementById("poeng").innerHTML = poeng

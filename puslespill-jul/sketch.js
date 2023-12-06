@@ -10,7 +10,7 @@ let boardSize = 300
 let tile = boardSize / 3
 
 let assetsList = []
-const puzzleFolder = "face-pieces/"
+const puzzleFolder = "christmas/"
 
 function setup() {
   createCanvas(boardSize, boardSize)
@@ -60,7 +60,7 @@ class Player{
 
   drawPlayer() {
     noFill()
-    stroke(255)
+    stroke(0, 255, 0)
     strokeWeight(2)
     
     rect(this.x, this.y, tile)
@@ -141,7 +141,7 @@ function isCorrectOrder(board){
       expectedId += 1
     }
   }
-  console.log("Done!")
+  // console.log("Done!")
   return true
 }
 
@@ -187,8 +187,10 @@ function draw() {
       board[x][y].drawPiece()
     }
   }
-
-  player.drawPlayer()
+  if (!isCorrectOrder(board)){
+    player.drawPlayer()
+  }
+    
 
 }
 

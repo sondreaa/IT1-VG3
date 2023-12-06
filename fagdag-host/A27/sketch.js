@@ -229,8 +229,15 @@ function draw() {
 
     if (localStorage.getItem("poengIT1Afagdag") !== null) {
       poeng = Number(localStorage.getItem("poengIT1Afagdag")) + level-1
-      localStorage.setItem("poengIT1Afagdag",String(poeng))
+      
+    } else{
+      poeng = level-1
+
     }
+    console.log(poeng)
+
+    localStorage.setItem("poengIT1Afagdag",String(poeng))
+
   }
 
 }
