@@ -6,20 +6,33 @@
     <title>Document</title>
   </head>
   <body>
+    <button id="btn" onclick="btnclick()">trykk her</button>
+    <ul id="txt"></ul>
+    <input type="text" id="inputEl" />
+
     <script>
       let navn = ["Anne", "Berit", "Cecilie", "Delina"];
       let indexCount = 0;
 
       function btnclick() {
-        document.getElementById("txt").innerText += navn[indexCount] + "\n";
+        document.getElementById("txt").innerHTML +=
+          "<li>" + navn[indexCount] + "</li>\n";
         indexCount += 1;
 
         if (indexCount > navn.length - 1)
           document.getElementById("btn").disabled = true;
       }
-    </script>
 
-    <button id="btn" onclick="btnclick()">trykk her</button>
-    <p id="txt"></p>
+      function enterFunc(event) {
+        if (event.keyCode == 13) {
+          navn.push(document.getElementById("inputEl").value);
+          document.getElementById("btn").disabled = false;
+          //   btnclick();
+          document.getElementById("inputEl").value = null;
+        }
+      }
+
+      document.getElementById("inputEl").addEventListener("keydown", enterFunc);
+    </script>
   </body>
 </html>
