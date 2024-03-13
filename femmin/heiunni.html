@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="hei" />
+    <input type="number" id="alder" />
+
+    <p id="output">
+      <span id="outputhei"></span><span id="outputalder"></span>
+    </p>
+    <script>
+      function enterFuncHei(event) {
+        if (event.keyCode == 13) {
+          document.getElementById("outputhei").innerHTML =
+            "Hei, " + document.getElementById("hei").value + ". ";
+
+          //   document.getElementById("hei").value = null;
+
+          event.preventDefault();
+          let target = document.getElementById("alder");
+          target.focus();
+          target.select();
+        }
+      }
+      function enterFuncAlder(event) {
+        if (event.keyCode == 13) {
+          let output;
+          if (
+            document.getElementById("hei").value == "Unni" &&
+            document.getElementById("alder").value < 50
+          ) {
+            output = "Feil Unni, du er da ikke så ung lenger...";
+          } else {
+            output =
+              "Hei, " + document.getElementById("hei").value + ", står til?";
+          }
+
+          document.getElementById("output").innerHTML = output;
+
+          //   document.getElementById("alder").value = null;
+        }
+      }
+
+      document.getElementById("hei").addEventListener("keydown", enterFuncHei);
+      document
+        .getElementById("alder")
+        .addEventListener("keydown", enterFuncAlder);
+    </script>
+  </body>
+</html>
