@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="punktliste"></ul>
+
+    <table id="tabell">
+      <tr id="tableheader">
+        <th>-</th>
+      </tr>
+    </table>
+
+    <script>
+      //del 1 & 2
+      let l1 = [8, 4, 5, 3, 7];
+
+      for (let i = 0; i < l1.length; i++) {
+        if (i < l1.length - 1) {
+          document.getElementById("punktliste").innerHTML +=
+            "<li>" + l1[i] * l1[i + 1] + "</li>";
+        } else {
+          document.getElementById("punktliste").innerHTML +=
+            "<li>" + l1[i] * l1[0] + "</li>";
+        }
+      }
+
+      // del 3
+      let l2 = [2, 3, 5, 6];
+
+      for (let i = 0; i < l1.length; i++) {
+        document.getElementById("tableheader").innerHTML +=
+          "<th>" + l1[i] + "</th>";
+      }
+
+      for (let j = 0; j < l2.length; j++) {
+        document.getElementById("tabell").innerHTML +=
+          "<tr id='tablerow" + j + "'><th>" + l2[j] + "</th></tr>";
+      }
+
+      for (let i = 0; i < l1.length; i++) {
+        for (let j = 0; j < l2.length; j++) {
+          document.getElementById("tablerow" + j).innerHTML +=
+            "<td>" + l1[i] * l2[j] + "</td>";
+        }
+      }
+    </script>
+  </body>
+</html>
