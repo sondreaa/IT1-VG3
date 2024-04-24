@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="number" id="input" />
+    <button
+      onclick="console.log(add2024(document.getElementById('input').value))"
+    >
+      click
+    </button>
+    <p id="output"></p>
+    <script>
+      function add2024(num) {
+        return Number(num) + 2024;
+      }
+
+      function btnclick() {
+        console.log(add2024(document.getElementById("input").value));
+
+        document.getElementById("output").innerHTML = add2024(
+          document.getElementById("input").value
+        );
+      }
+    </script>
+
+    <br />
+
+    <div id="btndiv">
+      <button
+        id="AA"
+        onclick="numclick(document.getElementById('output').innerText)"
+      >
+        OKOK
+      </button>
+    </div>
+    <script>
+      function numclick(i) {
+        console.log(i);
+      }
+      for (let i = 0; i < 10; i++) {
+        document.getElementById(
+          "btndiv"
+        ).innerHTML += `<button id="btn${i}" onclick="numclick(document.getElementById('btn${i}').innerHTML)"> ${i.toString()} </button>`;
+      }
+    </script>
+  </body>
+</html>
