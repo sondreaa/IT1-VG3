@@ -75,6 +75,28 @@ function finnIndex(liste=[], element) {
     }
 }
 
+function reversert(liste=[], element) {
+    if (!Array.isArray(liste))
+        return null
 
-// reverse, includes, sort, slice, splice
+    let nyListe = []
+    for (let i=liste.length-1;i>-1;i--) {
+        nyListe.push(liste[i])
+    }
+    return nyListe
+}
+// console.log(reversert([1,2,3,4,5]))
+
+function listeInkluderer(liste=[], element) {
+    if (!Array.isArray(liste))
+        return null
+
+    for (let i=0;i<liste.length;i++) {
+        if (liste[i] === element) return true
+    }
+    return false
+}
+
+// MANGLER:
+// sort, slice, splice, 
 

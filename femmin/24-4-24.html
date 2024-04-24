@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="punktliste"></ul>
+
+    <table id="tabell">
+      <tr id="tableheader">
+        <th onclick="sortTable(0)">Klikk her!</th>
+      </tr>
+    </table>
+
+    <script>
+      let l = [
+        ["Trine", 23, 15],
+        ["Lise", 12, 93],
+        ["Ole", 45, 55],
+        ["Anne", 34, 10],
+        ["Anne", 34, 10],
+        ["Anne", 34, 10],
+      ];
+      let runder = l[0].length - 1;
+
+      function sortTable(i) {
+        if (i === 0) {
+          let sorted = l.sort((a, b) => {
+            return a[i].localeCompare(b[i]);
+          });
+
+          l = sorted;
+        } else {
+          let sorted = l.sort(function (a, b) {
+            return b[i] - a[i];
+          });
+          l = sorted;
+        }
+
+        resetTable();
+      }
+
+      function resetTable() {
+        document.getElementById("tabell").innerHTML =
+          '<tr id="tableheader"><th onclick="sortTable(0)">Navn</th></tr>';
+        for (let runde = 1; runde < runder + 1; runde++) {
+          document.getElementById("tableheader").innerHTML +=
+            '<th onclick="sortTable(' + runde + ')">Runde ' + runde + "</th>";
+        }
+        for (let i = 0; i < l.length; i++) {
+          document.getElementById("tabell").innerHTML +=
+            "<tr id='tablerow" + i + "'></tr>";
+
+          for (let j = 0; j < l[i].length; j++) {
+            document.getElementById("tablerow" + i).innerHTML +=
+              "<td>" + l[i][j] + "</td>";
+          }
+        }
+      }
+
+      //   for (let i = 0; i < l1.length; i++) {
+      //     for (let j = 0; j < l2.length; j++) {
+      //       document.getElementById("tablerow" + j).innerHTML +=
+      //         "<td>" + l1[i] * l2[j] + "</td>";
+      //     }
+      //   }
+    </script>
+  </body>
+</html>
