@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>skriv inn tall i en liste og lagre dem</title>
+  </head>
+  <body>
+    <input type="number" id="numInput" />
+    <a href="./liste.html">
+      <button onclick="saveArray()">Neste</button>
+    </a>
+    <script>
+      let arr = [];
+      function saveArray() {
+        let savedArray = arr.join(";");
+        localStorage.setItem("arr", savedArray);
+      }
+
+      function enterFunc(event) {
+        if (event.keyCode == 13) {
+          arr.push(document.getElementById("numInput").value);
+          console.log(arr);
+          document.getElementById("numInput").value = null;
+        }
+      }
+
+      document
+        .getElementById("numInput")
+        .addEventListener("keydown", enterFunc);
+    </script>
+  </body>
+</html>

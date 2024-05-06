@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>utskrift av lagret liste</title>
+  </head>
+  <body>
+    <ol type="1" id="arrList"></ol>
+    <script>
+      savedArray = localStorage.getItem("arr");
+      arr = savedArray.split(";");
+      console.log(arr);
+      arr.sort();
+
+      for (let i = 0; i < arr.length; i++) {
+        arr[i] = Number(arr[i]);
+        document.getElementById("arrList").innerHTML +=
+          "<li>" + (arr[i] + 2) + "</li>";
+      }
+    </script>
+  </body>
+</html>
