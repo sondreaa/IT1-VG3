@@ -29,14 +29,31 @@ header {
     
     display: flex;
     justify-content: space-evenly;
+    
+}
+@media screen and (max-width: 992px){
+    .links{
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 8px;
+        
+    } 
 }
 button{
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
+    margin-left: 4px;
+    margin-right: 4px;
     background-color: #413116;
     color: #85642F;
     font-size: large;
+    transition: background-color 2s ease;
+    
+}
+button:hover{
+    background-color: #85642F;
+    color: #413116;
 }
 canvas{
     position: relative;

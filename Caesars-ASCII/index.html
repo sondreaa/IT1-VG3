@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Caesars ASCII</title>
+  </head>
+  <body>
+    <h2>Caesars ASCII</h2>
+    <input type="text" placeholder="Input" id="inputText" />
+    <input type="number" placeholder="Forskyvning" id="forskyvning" value="1" />
+    <button onclick="encryptInput()">encrypt</button>
+    <button onclick="decryptInput()">decrypt</button>
+
+    <p id="outputText">output</p>
+    <script>
+      const FORSKYVNING = 2;
+      let text = "sondre er kul";
+
+      // console.log(text.charCodeAt(0));
+      // console.log(String.fromCharCode(115));
+
+      function toASCII(string) {
+        // gjør om en string til en liste med ASCII-verdier
+        let listASCII = [];
+        for (let i = 0; i < string.length; i++) {
+          listASCII.push(string.charCodeAt(i));
+        }
+        return listASCII;
+      }
+
+      function fromASCII(list) {
+        // gjør om en liste med ASCII-verdier til en string
+        let string = "";
+        for (let i = 0; i < list.length; i++) {
+          string += String.fromCharCode(list[i]);
+        }
+        return string;
+      }
+      //   console.log(fromASCII(toASCII("sondre")));
+
+      function encrypt(string, forskyvning) {
+        let stringASCII = toASCII(string); //gjør strengen om til ASCII
+        for (let i = 0; i < stringASCII.length; i++) {
+          //forskyver verdiene
+          stringASCII[i] += forskyvning;
+        }
+        let encrypted = fromASCII(stringASCII); //gjør strengen om tilbake
+
+        return encrypted;
+      }
+      function decrypt(string, forskyvning) {
+        let stringASCII = toASCII(string);
+        for (let i = 0; i < stringASCII.length; i++) {
+          stringASCII[i] -= forskyvning; //samme som encrypt()-funksjonen, men motsatt forskyvning
+        }
+        let decrypted = fromASCII(stringASCII);
+
+        return decrypted;
+      }
+
+      //TEST
+      let encryptedText = encrypt(text, FORSKYVNING);
+      let decryptedText = decrypt(encryptedText, FORSKYVNING);
+
+      console.log(encryptedText, decryptedText);
+
+      //I NETTSIDEN
+
+      function encryptInput() {
+        let input = document.getElementById("inputText").value;
+        let forskyvning = Number(document.getElementById("forskyvning").value);
+
+        document.getElementById("outputText").innerText = encrypt(
+          input,
+          forskyvning
+        );
+      }
+      function decryptInput() {
+        let input = document.getElementById("inputText").value;
+        let forskyvning = Number(document.getElementById("forskyvning").value);
+
+        document.getElementById("outputText").innerText = decrypt(
+          input,
+          forskyvning
+        );
+      }
+    </script>
+  </body>
+</html>
