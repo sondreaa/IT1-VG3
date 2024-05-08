@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="number" id="tall" />
+    <table id="tabell"></table>
+    <script>
+      let arr = [[]];
+      document.getElementById("tall").addEventListener("keydown", enterFunk);
+
+      function enterFunk(event) {
+        if (event.keyCode == 13) {
+          let enteredNumber = Number(document.getElementById("tall").value);
+          document.getElementById("tabell").innerHTML = "";
+
+          document.getElementById("tall").value = "";
+
+          if (arr[arr.length - 1].length == 3) {
+            arr.push([]);
+          }
+          arr[arr.length - 1].push(enteredNumber);
+          console.log(arr);
+
+          for (let i = 0; i < arr.length; i++) {
+            document.getElementById("tabell").innerHTML +=
+              "<tr id='rad" + i + "'></tr>";
+
+            document.getElementById("rad" + i).innerHTML = "";
+            for (let j = 0; j < arr[i].length; j++) {
+              document.getElementById("rad" + i).innerHTML +=
+                "<td>" + arr[i][j] + "</td>";
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
